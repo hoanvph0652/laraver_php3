@@ -1,13 +1,13 @@
 @extends('layouts')
-@section('title', 'POST')
+@section('title', 'Categories')
 @section('contents')
 <!-- Code -->
 <div class="content-wrapper">
     <!-- Content Header (Page header) -->
     <section class="content-header">
       <h1>
-        Post
-        <small>Post</small>
+        Categories
+        <small>Categories</small>
       </h1>
       <ol class="breadcrumb">
         <li><a href="#"><i class="fa fa-dashboard"></i> Level</a></li>
@@ -16,35 +16,28 @@
     </section>
 
     <section class="content container-fluid">
-      @if(empty($posts))
+      @if(empty($categories))
       <p>No Data</p>
     @else
       <table class="table">
         <thead>
           <th>Id</th>
-          <th>Title</th>
-          <th>Content</th>
-          <th>Name</th>
           <th>User_id</th>
-          <th>Category_id</th>
-            <th><a href="{{route('posts.create')}}" class="btn btn-success">Create</a></th>
-
+          <th>Name</th>
+            <th><a href="{{route('categories.create')}}" class="btn btn-success">Create</a></th>
         </thead>
         <tbody>
-          @foreach($posts as $post)
+          @foreach($categories as $category)
             <tr>
-              <td>{{$post['id']}}</td>
-              <td>{{$post['title']}}</td>
-              <td>{{$post['content']}}</td>
-              <td>{{$post['user']['name']}}</td> 
-              <td>{{$post['user_id']}}</td>
-              <td>{{$post['category_id']}}</td>
+              <td>{{$category['id']}}</td>
+              <td>{{$category['user_id']}}</td>
+              <td>{{$category['name']}}</td>
               <td>
-                  <a href="{{ route('posts.show',['id'=>$post['id']]) }}" class="btn btn-success">Details</a>
+                  <a href="{{ route('categories.show',['id'=>$category['id']]) }}" class="btn btn-success">Details</a>
                </td>
-              <td><a href="{{ route('posts.edit',['id'=>$post['id']]) }}" class="btn btn-primary">Update</a></td>
+              <td><a href="{{ route('categories.edit',['id'=>$category['id']]) }}" class="btn btn-primary">Update</a></td>
               <td>                  
-                <form action="{{ route('posts.delete',['id'=>$post['id']]) }}" method="POST">
+                <form action="{{ route('categories.delete',['id'=>$category['id']]) }}" method="POST">
                     @csrf
                     <button type="submit" class="btn btn-danger">Delete</button>
                   </form>

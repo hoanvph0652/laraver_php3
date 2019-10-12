@@ -16,8 +16,11 @@ use Illuminate\Support\Str;
 $factory->define(User::class, function (Faker $faker) {
     return [
         'name' => $faker->name,
-        'birthday'=> $faker->date(),
         'email' => $faker->unique()->safeEmail,
-        'password' => Hash::make('123456')
+        'birthday' => $faker->date(),
+        'phonenumber' => $faker->phoneNumber,
+        'password' => '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi',
+        'role' => 'admin', // password
+       
     ];
 });

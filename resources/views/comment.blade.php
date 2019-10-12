@@ -1,13 +1,13 @@
 @extends('layouts')
-@section('title', 'POST')
+@section('title', 'Comment')
 @section('contents')
 <!-- Code -->
 <div class="content-wrapper">
     <!-- Content Header (Page header) -->
     <section class="content-header">
       <h1>
-        Post
-        <small>Post</small>
+        Comments
+        <small>Comments</small>
       </h1>
       <ol class="breadcrumb">
         <li><a href="#"><i class="fa fa-dashboard"></i> Level</a></li>
@@ -16,35 +16,33 @@
     </section>
 
     <section class="content container-fluid">
-      @if(empty($posts))
+      @if(empty($comments))
       <p>No Data</p>
     @else
       <table class="table">
         <thead>
           <th>Id</th>
-          <th>Title</th>
+          <th>Post_id</th>
           <th>Content</th>
-          <th>Name</th>
           <th>User_id</th>
-          <th>Category_id</th>
-            <th><a href="{{route('posts.create')}}" class="btn btn-success">Create</a></th>
+          <th>Is_active</th>
+            <th><a href="{{route('comments.create')}}" class="btn btn-success">Create</a></th>
 
         </thead>
         <tbody>
-          @foreach($posts as $post)
+          @foreach($comments as $comment)
             <tr>
-              <td>{{$post['id']}}</td>
-              <td>{{$post['title']}}</td>
-              <td>{{$post['content']}}</td>
-              <td>{{$post['user']['name']}}</td> 
-              <td>{{$post['user_id']}}</td>
-              <td>{{$post['category_id']}}</td>
+              <td>{{$comment['id']}}</td>
+              <td>{{$comment['post_id']}}</td>
+              <td>{{$comment['content']}}</td>
+              <td>{{$comment['user_id']}}</td>
+              <td>{{$comment['is_active']}}</td>
               <td>
-                  <a href="{{ route('posts.show',['id'=>$post['id']]) }}" class="btn btn-success">Details</a>
+                  <a href="{{ route('comments.show',['id'=>$comment['id']]) }}" class="btn btn-success">Details</a>
                </td>
-              <td><a href="{{ route('posts.edit',['id'=>$post['id']]) }}" class="btn btn-primary">Update</a></td>
+              <td><a href="{{ route('comments.edit',['id'=>$comment['id']]) }}" class="btn btn-primary">Update</a></td>
               <td>                  
-                <form action="{{ route('posts.delete',['id'=>$post['id']]) }}" method="POST">
+                <form action="{{ route('comments.delete',['id'=>$comment['id']]) }}" method="POST">
                     @csrf
                     <button type="submit" class="btn btn-danger">Delete</button>
                   </form>
